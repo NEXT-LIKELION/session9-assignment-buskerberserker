@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toss App Clone</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f6f8;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .app-container {
+            width: 100%;
+            max-width: 400px;
+            background-color: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            background-color: #f9f9fb;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-circle {
+            width: 24px;
+            height: 24px;
+            background-color: #e0e0e0;
+            border-radius: 50%;
+            margin-right: 4px;
+        }
+        
+        .logo-text {
+            font-weight: bold;
+            color: #333;
+            font-size: 18px;
+        }
+        
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            margin-right: 6px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 16px;
+        }
+        
+        .search-bar {
+            margin: 8px 16px;
+            padding: 12px 16px;
+            background-color: #f2f3f5;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #555;
+        }
+        
+        .accounts-section {
+            background-color: #f9f9fb;
+            margin: 8px 16px;
+            border-radius: 12px;
+            padding: 16px;
+        }
+        
+        .account-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .account-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+            margin-right: 12px;
+        }
+        
+        .account-details {
+            flex-grow: 1;
+        }
+        
+        .account-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .account-name {
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .account-balance {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .amount-label {
+            color: #777;
+            font-size: 14px;
+        }
+        
+        .positive-rate {
+            color: #ff5252;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .section-link {
+            display: flex;
+            justify-content: center;
+            padding: 12px 0;
+            color: #666;
+            font-size: 13px;
+            border-top: 1px solid #f0f0f2;
+            margin-top: 8px;
+        }
+        
+        .expenses-section {
+            margin: 8px 16px;
+        }
+        
+        .expense-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 12px 0;
+        }
+        
+        .card-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background-color: #e6f0ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 12px;
+        }
+        
+        .calendar-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background-color: #e1e5ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 12px;
+        }
+        
+        .action-button {
+            background-color: #f2f3f5;
+            color: #3182f6;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+        }
+        
+        .navigation-bar {
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            border-top: 1px solid #f0f0f2;
+            margin-top: 16px;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 12px;
+            color: #888;
+        }
+        
+        .nav-icon {
+            margin-bottom: 4px;
+            font-size: 20px;
+            color: #555;
+        }
+        
+        .active {
+            color: #333;
+        }
+        
+        .menu-section {
+            display: flex;
+            justify-content: space-between;
+            margin: 16px;
+            border-top: 1px solid #f0f0f2;
+            padding-top: 16px;
+        }
+        
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 12px;
+            color: #555;
+            flex: 1;
+        }
+        
+        .menu-icon {
+            width: 48px;
+            height: 48px;
+            background-color: #f9f9fb;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="header">
+            <div class="logo">
+                <img src="toss_logo.png" alt="Toss Logo" class="logo-img" />
+            </div>
+            <div class="header-icons">
+                <div>👤</div>
+                <div>🔔</div>
+            </div>
+        </div>
+        
+        <div class="search-bar">
+            <div>토스뱅크</div>
+            <div>›</div>
+        </div>
+        
+        <div class="accounts-section">
+            <div class="account-item">
+                <div class="account-info">
+                    <div class="account-icon" style="background-color: #3182f6;">T</div>
+                    <div class="account-details">
+                        <div class="account-name">토스뱅크 통장</div>
+                        <div class="account-balance">150,009원</div>
+                    </div>
+                </div>
+                <div class="amount-label">송금</div>
+            </div>
+            
+            <div class="account-item">
+                <div class="account-info">
+                    <div class="account-icon" style="background-color: #444;">K</div>
+                    <div class="account-details">
+                        <div class="account-name">멀리리2030통장</div>
+                        <div class="account-balance">73,820원</div>
+                    </div>
+                </div>
+                <div class="amount-label">송금</div>
+            </div>
+            
+            <div class="account-item">
+                <div class="account-info">
+                    <div class="account-icon" style="background-color: #1428a0;">S</div>
+                    <div class="account-details">
+                        <div class="account-name">투자 모아보기 · 8개</div>
+                        <div class="account-balance">90,000,000원 <span class="positive-rate">+12.5%</span></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-link">
+                내 계좌 · 대출 · 증권 · 포인트 보기 ›
+            </div>
+        </div>
+        
+        <div class="expenses-section">
+            <div class="expense-item">
+                <div class="account-info">
+                    <div class="card-icon">💳</div>
+                    <div class="account-details">
+                        <div class="account-name">이번 달 소비</div>
+                        <div class="account-balance">125,000원</div>
+                    </div>
+                </div>
+                <div class="action-button">새 내역 1건</div>
+            </div>
+            
+            <div class="expense-item">
+                <div class="account-info">
+                    <div class="calendar-icon">D-3</div>
+                    <div class="account-details">
+                        <div class="account-name">3월 25일 날 카드값</div>
+                        <div class="account-balance">921,000원</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="search-bar">
+            <div>내 신용 점수</div>
+            <div>›</div>
+        </div>
+        
+        <div class="menu-section">
+            <div class="menu-item">
+                <div class="menu-icon">🏠</div>
+                <div>계좌개설</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon">💳</div>
+                <div>카드발급</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon">💰</div>
+                <div>대출받기</div>
+            </div>
+        </div>
+        
+        <div class="navigation-bar">
+            <div class="nav-item active">
+                <div class="nav-icon">🏠</div>
+                <div>홈</div>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">💎</div>
+                <div>혜택</div>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">🔒</div>
+                <div>송금하기</div>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">📊</div>
+                <div>주식</div>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">≡</div>
+                <div>전체</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
